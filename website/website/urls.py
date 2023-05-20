@@ -8,13 +8,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
 
+
+    path('logout/', logoutUser, name='logoutUser'),
     path('register/', register, name='register'),
     path('login/', loginUser, name='loginUser'),
-    path('logout/', logoutUser, name='logoutUser'),
 
     path('account/', account, name='account'),
-
-    path('account/create/', createBlog, name='createBlog'),
+    path('account/create-blog/', createBlog, name='createBlog'),
     path('account/<int:blog_pk>/delete', deleteBlog, name='deleteBlog'),
     path('account/<int:blog_pk>/red', changeBlog, name='changeBlog'),
 

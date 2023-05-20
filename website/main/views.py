@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.contrib.auth import logout
 from django.db import IntegrityError
 from .models import Blog, Category
 from .forms import BlogForm
@@ -52,7 +51,9 @@ def logoutUser(request):
         return redirect('home')
 
 
+
 def account(request):
+    blogs = Blog.objects.filter(user=request.user)
     return render(request, 'main/account.html')
 
 def account(request):
@@ -66,7 +67,7 @@ def createBlog(request):
         if form.is_valid():
             new_blog = form.save(commit=False)
             new_blog.user = request.user
-            new_blog.image = request.FILES['image'] 
+            new_blog.image = request.FILES['image'] # имя поля для загрузки изображения
             new_blog.save()
             return redirect('account')
     else:

@@ -4,14 +4,12 @@
 
 {% block content %}
 
-<h1 id="blogtitle" class="font-weight-bold text-center">Блог</h1>
+<h2 id="blogtitle" class="font-weight-bold text-center">Блог</h2>
 
-<h3 class="text-center mb-5">Здесь написано {{ blogs.count }} поста</h3>
-
-<div class="container d-flex justify-content-center">
+<div class="d-flex justify-content-center">
   <form method="post">
     {% csrf_token %}
-    <div class="mb-3">
+    <div class="mb-2">
       <label for="category" class="form-label">Выбор категории:</label>
       <select name="category_id" id="category" class="form-select">
         {% for category in categories %}
@@ -19,7 +17,7 @@
         {% endfor %}
       </select>
     </div>
-    <button type="submit" class="btn btn-primary">Go</button>
+    <button type="submit" class="btn btn-primary">Найти</button>
   </form>
 </div>
 
@@ -29,7 +27,7 @@
 </div>
  
 {% for blog in blogs %}
-<div class= "row justify-content-center mb-15">
+<div class= "row justify-content-center mb-12">
   <div class="col-md-2">
     <div>
       <a href="{% url 'blog:detail' blog.id %}">
